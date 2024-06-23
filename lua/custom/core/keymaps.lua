@@ -21,6 +21,10 @@ keymap.set("n", "<leader>+", "<C-a>") -- increment
 keymap.set("n", "<leader>-", "<C-x>") -- decrement
 
 -- window management
+keymap.set("n", "<A-h>", "<C-w>h", { silent = true })
+keymap.set("n", "<A-l>", "<C-w>l", { silent = true })
+keymap.set("n", "<A-j>", "<C-w>j", { silent = true })
+keymap.set("n", "<A-k>", "<C-w>k", { silent = true })
 keymap.set("n", "<leader>dv", "<C-w>v") -- split window vertically
 keymap.set("n", "<leader>dh", "<C-w>s") -- split window horizontally
 keymap.set("n", "<leader>de", "<C-w>=") -- make split windows equal width & height
@@ -38,6 +42,8 @@ keymap.set('n', 'dd', '"_dd') -- duplicate line not passing deleted line to regi
 keymap.set('n', '<C-a>', 'ggVG') -- select-all 
 keymap.set('n', 'J', '5j')
 keymap.set('n', 'K', '5k')
+keymap.set('v', 'J', '5j')
+keymap.set('v', 'K', '5k')
 
 keymap.set('n', '<leader>rr', ':e!<CR>') -- revert file
 keymap.set('n', '<leader>w', ':w<CR>') -- saves file
@@ -62,7 +68,7 @@ keymap.set('n', '<C-F2>', ':BookmarkToggle<CR>')
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 
 -- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
+-- keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer // todo
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
@@ -87,15 +93,15 @@ keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if ne
 -- move
 local opts = { noremap = true, silent = false }
 -- Normal-mode commands
-keymap.set('n', '<A-j>', ':MoveLine(1)<CR>', opts)
-keymap.set('n', '<A-k>', ':MoveLine(-1)<CR>', opts)
-keymap.set('n', '<A-h>', ':MoveHChar(-1)<CR>', opts)
-keymap.set('n', '<A-l>', ':MoveHChar(1)<CR>', opts)
+keymap.set('n', '<S-A-k>', ':MoveLine(-1)<CR>', opts)
+keymap.set('n', '<S-A-j>', ':MoveLine(1)<CR>', opts)
+-- keymap.set('n', '<A-h>', ':MoveHChar(-1)<CR>', opts)
+-- keymap.set('n', '<A-l>', ':MoveHChar(1)<CR>', opts)
 -- Visual-mode commands
-keymap.set('v', '<A-j>', ':MoveBlock(1)<CR>', opts)
-keymap.set('v', '<A-k>', ':MoveBlock(-1)<CR>', opts)
-keymap.set('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
-keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
+keymap.set('v', '<S-A-j>', ':MoveBlock(1)<CR>', opts)
+keymap.set('v', '<S-A-k>', ':MoveBlock(-1)<CR>', opts)
+-- keymap.set('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
+-- keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
 
 -- Harpoon
 keymap.set("n", "<leader>a", function() require("harpoon.mark").add_file() end, opts)
@@ -105,3 +111,10 @@ keymap.set("n", "<leader>2", function() require("harpoon.ui").nav_file(2) end, o
 keymap.set("n", "<leader>3", function() require("harpoon.ui").nav_file(3) end, opts)
 keymap.set("n", "<leader>4", function() require("harpoon.ui").nav_file(4) end, opts)
 
+-- undotree
+keymap.set("n", "<leader>u", ":UndotreeToggle<CR>")
+
+keymap.set("n",    "<Tab>",         ">>",  opts)
+keymap.set("n",    "<S-Tab>",       "<<",  opts)
+keymap.set("v",    "<Tab>",         ">gv", opts)
+keymap.set("v",    "<S-Tab>",       "<gv", opts)
